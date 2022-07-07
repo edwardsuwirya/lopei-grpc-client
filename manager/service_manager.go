@@ -1,20 +1,19 @@
 package manager
 
+import (
+	"enigmacamp.com/lopei_grpc_cnlt/usecase"
+)
+
 type ServiceManager interface {
-	CustomerCheckBalance(lopeiId int32) (float32, error)
-	CustomerDoPayment(lopeiId int32, amount float32) error
+	CheckBalanceService() usecase.CheckBalanceUseCase
 }
 
 type serviceManager struct {
 	repoManager RepositoryManager
 }
 
-func (s *serviceManager) CustomerCheckBalance(lopeiId int32) (float32, error) {
-	return s.repoManager.CustomerRepo().CheckBalance(lopeiId)
-}
-
-func (s *serviceManager) CustomerDoPayment(lopeiId int32, amount float32) error {
-	return s.repoManager.CustomerRepo().DoPayment(lopeiId, amount)
+func (s *serviceManager) CheckBalanceService() usecase.CheckBalanceUseCase {
+	return usecase.NewCheckBalanceService(s.repoManager.CustomerRepo())
 }
 
 func NewServiceManager(repoManager RepositoryManager) ServiceManager {

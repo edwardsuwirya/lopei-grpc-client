@@ -10,7 +10,7 @@ type cli struct {
 }
 
 func (c *cli) Run() {
-	c.serviceManager.CustomerCheckBalance(int32(1))
+	c.serviceManager.CheckBalanceService().GetBalance(int32(1))
 }
 func Cli() *cli {
 	c := config.NewConfig()
