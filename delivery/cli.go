@@ -7,11 +7,11 @@ import (
 )
 
 type cli struct {
-	serviceManager manager.UseCaseManager
+	useCaseManager manager.UseCaseManager
 }
 
 func (c *cli) Run() {
-	balance, err := c.serviceManager.CheckBalanceUseCase().GetBalance(int32(1))
+	balance, err := c.useCaseManager.CheckBalanceUseCase().GetBalance(int32(1))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -21,8 +21,8 @@ func Cli() *cli {
 	c := config.NewConfig()
 	infraManager := manager.NewInfraManager(c)
 	repoManager := manager.NewRepositoryManager(infraManager)
-	serviceManager := manager.NewUseCaseManager(repoManager)
+	useCaseManager := manager.NewUseCaseManager(repoManager)
 	return &cli{
-		serviceManager: serviceManager,
+		useCaseManager: useCaseManager,
 	}
 }
