@@ -21,7 +21,7 @@ func (c *customerRepository) CheckBalance(lopeiId int32) (float32, error) {
 		LopeiId: lopeiId,
 	})
 	if err != nil {
-		log.Fatalf("Error when calling Check Balance: %s", err)
+		return 0, err
 	}
 	fmt.Println(response)
 	return 0, nil
@@ -33,7 +33,7 @@ func (c *customerRepository) DoPayment(lopeiId int32, amount float32) error {
 		Amount:  amount,
 	})
 	if err != nil {
-		log.Fatalf("Error when calling Check Balance: %s", err)
+		return err
 	}
 	log.Printf("%v", response)
 	return nil
