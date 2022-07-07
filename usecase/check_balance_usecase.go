@@ -14,7 +14,7 @@ func (a *checkBalanceUseCase) GetBalance(lopeiId int32) (float32, error) {
 	return a.repo.CheckBalance(lopeiId)
 }
 
-func NewCheckBalanceService(repo repository.CustomerRepository) CheckBalanceUseCase {
+func NewCheckBalanceUseCase(repo repository.CustomerRepository) CheckBalanceUseCase {
 	return &checkBalanceUseCase{
 		repo: repo,
 	}
