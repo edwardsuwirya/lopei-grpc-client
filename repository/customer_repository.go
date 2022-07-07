@@ -29,8 +29,8 @@ func (c *customerRepository) CheckBalance(lopeiId int32) (float32, error) {
 
 func (c *customerRepository) DoPayment(lopeiId int32, amount float32) error {
 	response, err := c.client.DoPayment(context.Background(), &service.PaymentMessage{
-		LopeiId: int32(1),
-		Amount:  30000,
+		LopeiId: lopeiId,
+		Amount:  amount,
 	})
 	if err != nil {
 		log.Fatalf("Error when calling Check Balance: %s", err)
